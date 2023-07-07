@@ -3,6 +3,5 @@ CREATE TABLE tasks (
     title varchar(256) NOT NULL,
     description text,
     get_time timestamp NOT NULL,
-    status varchar(128) NOT NULL,
-    performer int
+    status varchar(128) NOT NULL
 )

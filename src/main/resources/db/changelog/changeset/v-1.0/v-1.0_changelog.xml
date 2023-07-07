@@ -21,7 +21,7 @@
 
 
     <changeSet id="1.03" author="Evgeniy Spivak">
-        <sqlFile dbms="postgresql" path="sql/add_constraint_tasks_v-1.0.sql" relativeToChangelogFile="true"/>
+        <sqlFile dbms="postgresql" path="sql/create_tasks_workers_table_v-1.0.sql" relativeToChangelogFile="true"/>
     </changeSet>
 
 
