@@ -7,7 +7,7 @@ public class TaskToTaskShortDTOMapper {
 
     public static TaskShortDTO taskToTaskShortDTO(Task task) {
         return new TaskShortDTO(task.getId(),
-                task.getDescription(),
+                task.getTitle(),
                 task.getStatus());
     }
 

@@ -18,4 +18,11 @@ public class TaskDAOImpl implements TaskDAO {
     public List<Task> getAllTasks() {
         return jdbcTemplate.query("SELECT * FROM tasks", new BeanPropertyRowMapper<>(Task.class));
     }
+
+    @Override
+    public Task getTask(int id) {
+        return jdbcTemplate.query("SELECT * FROM tasks WHERE id=?",
+                new BeanPropertyRowMapper<>(Task.class), id)
+                .stream().findAny().orElse(null);
+    }
 }

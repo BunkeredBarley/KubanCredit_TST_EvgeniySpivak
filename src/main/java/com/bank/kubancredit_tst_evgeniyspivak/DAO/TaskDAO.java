@@ -8,4 +8,6 @@ public interface TaskDAO {
 
     List<Task> getAllTasks();
 
+    Task getTask(int id);
+
 }
