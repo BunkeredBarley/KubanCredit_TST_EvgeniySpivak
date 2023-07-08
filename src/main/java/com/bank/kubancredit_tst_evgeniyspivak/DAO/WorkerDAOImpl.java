@@ -1,5 +1,6 @@
 package com.bank.kubancredit_tst_evgeniyspivak.DAO;
 
+import com.bank.kubancredit_tst_evgeniyspivak.DTO.WorkerFullDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.entity.Task;
 import com.bank.kubancredit_tst_evgeniyspivak.entity.Worker;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,11 @@ import java.util.List;
 public class WorkerDAOImpl implements WorkerDAO {
 
     private final JdbcTemplate jdbcTemplate;
+
+    @Override
+    public List<Worker> getAllWorkers() {
+        return jdbcTemplate.query("SELECT * FROM workers", new BeanPropertyRowMapper<>(Worker.class));
+    }
 
     @Override
     public Worker getWorker(int id) {

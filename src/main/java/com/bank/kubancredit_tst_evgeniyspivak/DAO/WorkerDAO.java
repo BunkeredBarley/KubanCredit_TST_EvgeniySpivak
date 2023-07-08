@@ -1,10 +1,13 @@
 package com.bank.kubancredit_tst_evgeniyspivak.DAO;
 
+import com.bank.kubancredit_tst_evgeniyspivak.DTO.WorkerFullDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.entity.Worker;
 
 import java.util.List;
 
 public interface WorkerDAO {
+
+    List<Worker> getAllWorkers();
 
     Worker getWorker(int id);
 

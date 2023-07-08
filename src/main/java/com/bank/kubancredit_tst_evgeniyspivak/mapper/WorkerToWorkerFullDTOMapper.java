@@ -16,15 +16,13 @@ public class WorkerToWorkerFullDTOMapper {
                         task.getStatus())).toList();
 
 
-        WorkerFullDTO workerFullDTO = new WorkerFullDTO(
+        return new WorkerFullDTO(
                 worker.getId(),
                 worker.getName(),
                 worker.getPosition(),
                 worker.getAvatar(),
                 taskShortDTOS
         );
-
-        return workerFullDTO;
     }
 
 }

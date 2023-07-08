@@ -2,6 +2,7 @@ package com.bank.kubancredit_tst_evgeniyspivak.service;
 
 import com.bank.kubancredit_tst_evgeniyspivak.DAO.TaskDAO;
 import com.bank.kubancredit_tst_evgeniyspivak.DAO.WorkerDAO;
+import com.bank.kubancredit_tst_evgeniyspivak.DTO.TaskShortDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.DTO.WorkerFullDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.entity.Task;
 import com.bank.kubancredit_tst_evgeniyspivak.entity.Worker;
@@ -20,7 +21,15 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Override
     public List<WorkerFullDTO> getAllWorkers() {
-        return null;
+        return workerDAO.getAllWorkers().stream()
+                .map(worker -> new WorkerFullDTO(worker.getId(),
+                        worker.getName(),
+                        worker.getPosition(),
+                        worker.getAvatar(),
+                        taskDAO.getTasksOnWorker(worker.getId()).stream()
+                                .map(task -> new TaskShortDTO(task.getId(),
+                                        task.getTitle(),
+                                        task.getStatus())).toList())).toList();
     }
 
     @Override
