@@ -6,6 +6,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class WorkerDAOImpl implements WorkerDAO {
@@ -18,14 +20,13 @@ public class WorkerDAOImpl implements WorkerDAO {
     }
 
     @Override
-    public Worker getWorkerOnTask(int taskId) {
+    public List<Worker> getWorkersOnTask(int taskId) {
         return jdbcTemplate.query("""
                         SELECT DISTINCT workers.id, name, position, avatar
                         FROM tasks
                         JOIN task_worker ON tasks.id = task_worker.task_id
                         JOIN workers ON task_worker.worker_id = workers.id
                         WHERE tasks.id = ?""",
-                new BeanPropertyRowMapper<>(Worker.class), taskId)
-                .stream().findAny().orElse(null);
+                new BeanPropertyRowMapper<>(Worker.class), taskId);
     }
 }

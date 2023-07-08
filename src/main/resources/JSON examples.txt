@@ -1,0 +1,10 @@
+
+Стандарты входящих JSON
+
+Пункт 2 - изменить задачу по id (все кроме id и performer)
+{
+    "title": "Task1247",
+    "description": "Create a Dinosaur",
+    "get_time": "2007-12-03T10:15:30",
+    "status": "Done already"
+}
