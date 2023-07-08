@@ -15,9 +15,9 @@
     "workerId": 3
 }
 
-Пункт 7 - добавить нового работника
+Пункт 7 - добавить нового работника / обновить работника
 {
-    "name": "Bruce Wayne",
-    "position": "Batman",
-    "avatar": "batmanreturns/noregistry/avatar"
+    "name": "Sebastian Castellanos",
+    "position": "Detective",
+    "avatar": "lalala/detective"
 }

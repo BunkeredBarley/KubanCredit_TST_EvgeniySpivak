@@ -46,6 +46,14 @@ public class WorkerDAOImpl implements WorkerDAO {
     }
 
     @Override
+    public void updateWorker(int id, NewWorkerDTO updatedWorker) {
+        jdbcTemplate.update("""
+                UPDATE workers SET name = ?, position = ?, avatar = ?
+                WHERE id = ?""",updatedWorker.getName(), updatedWorker.getPosition(),
+                updatedWorker.getAvatar(), id);
+    }
+
+    @Override
     public void deleteWorker(int id) {
         jdbcTemplate.update("""
                 DELETE FROM workers WHERE id = ?""", id);

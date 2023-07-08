@@ -13,6 +13,8 @@ public interface WorkerService {
 
     void addWorker(NewWorkerDTO newWorker);
 
+    void updateWorker(int id, NewWorkerDTO updatedWorker);
+
     void deleteWorker(int id);
 
 }

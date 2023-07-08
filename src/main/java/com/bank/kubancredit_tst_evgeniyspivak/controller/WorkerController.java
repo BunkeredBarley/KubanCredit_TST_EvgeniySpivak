@@ -30,6 +30,11 @@ public class WorkerController {
         workerService.addWorker(newWorker);
     }
 
+    @PutMapping("/{id}")
+    public void updateWorker(@PathVariable Integer id, @RequestBody NewWorkerDTO updatedWorker) {
+        workerService.updateWorker(id, updatedWorker);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteWorker(@PathVariable Integer id) {
         workerService.deleteWorker(id);

@@ -47,6 +47,11 @@ public class WorkerServiceImpl implements WorkerService {
     }
 
     @Override
+    public void updateWorker(int id, NewWorkerDTO updatedWorker) {
+        workerDAO.updateWorker(id, updatedWorker);
+    }
+
+    @Override
     public void deleteWorker(int id) {
         workerDAO.deleteWorker(id);
     }
