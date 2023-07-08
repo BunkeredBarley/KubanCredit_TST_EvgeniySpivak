@@ -48,4 +48,9 @@ public class TaskServiceImpl implements TaskService {
         taskDAO.setWorkerOnTask(setWorkerOnTaskDTO.getTaskId(),
                 setWorkerOnTaskDTO.getWorkerId());
     }
+
+    @Override
+    public void deleteTask(int id) {
+        taskDAO.deleteTask(id);
+    }
 }

@@ -1,7 +1,6 @@
 package com.bank.kubancredit_tst_evgeniyspivak.DAO;
 
-import com.bank.kubancredit_tst_evgeniyspivak.DTO.WorkerFullDTO;
-import com.bank.kubancredit_tst_evgeniyspivak.entity.Task;
+import com.bank.kubancredit_tst_evgeniyspivak.DTO.NewWorkerDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.entity.Worker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -37,5 +36,18 @@ public class WorkerDAOImpl implements WorkerDAO {
                         JOIN workers ON task_worker.worker_id = workers.id
                         WHERE tasks.id = ?""",
                 new BeanPropertyRowMapper<>(Worker.class), taskId);
+    }
+
+    @Override
+    public void addWorker(NewWorkerDTO newWorker) {
+        jdbcTemplate.update("""
+                INSERT INTO workers (name, position, avatar)
+                VALUES (?, ? ,?)""", newWorker.getName(), newWorker.getPosition(), newWorker.getAvatar());
+    }
+
+    @Override
+    public void deleteWorker(int id) {
+        jdbcTemplate.update("""
+                DELETE FROM workers WHERE id = ?""", id);
     }
 }

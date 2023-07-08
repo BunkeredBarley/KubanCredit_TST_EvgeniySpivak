@@ -17,4 +17,6 @@ public interface TaskDAO {
 
     List<Task> getTasksOnWorker(int workerId);
 
+    void deleteTask(int id);
+
 }

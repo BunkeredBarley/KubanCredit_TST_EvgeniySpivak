@@ -18,4 +18,6 @@ public interface TaskService {
 
     void setWorkerOnTask(SetWorkerOnTaskDTO setWorkerOnTaskDTO);
 
+    void deleteTask(int id);
+
 }

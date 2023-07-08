@@ -3,14 +3,21 @@
 
 Пункт 5 - изменить задачу по id (все кроме id и performer)
 {
-    "title": "Task1247",
-    "description": "Create a Dinosaur",
+    "title": "Become the Bat",
+    "description": "Bat Bat Bat",
     "get_time": "2007-12-03T10:15:30",
-    "status": "Done already"
+    "status": "Done already like a Bat"
 }
 
 Пункт 6 - назначить на задачу исполнителя
 {
     "taskId": 3,
     "workerId": 3
+}
+
+Пункт 7 - добавить нового работника
+{
+    "name": "Bruce Wayne",
+    "position": "Batman",
+    "avatar": "batmanreturns/noregistry/avatar"
 }

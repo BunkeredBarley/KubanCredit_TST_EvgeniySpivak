@@ -28,7 +28,7 @@ public class TaskController {
         return taskService.getTask(id);
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public void modifyTask(@PathVariable Integer id, @RequestBody TaskModifyDTO taskModify) {
         taskService.modifyTask(id, taskModify);
     }
@@ -36,6 +36,11 @@ public class TaskController {
     @PostMapping("/set")
     public void setWorkerOnTask(@RequestBody SetWorkerOnTaskDTO setWorkerOnTaskDTO) {
         taskService.setWorkerOnTask(setWorkerOnTaskDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTask(@PathVariable Integer id) {
+        taskService.deleteTask(id);
     }
 
 }

@@ -2,7 +2,6 @@ package com.bank.kubancredit_tst_evgeniyspivak.DAO;
 
 import com.bank.kubancredit_tst_evgeniyspivak.DTO.TaskModifyDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.entity.Task;
-import com.bank.kubancredit_tst_evgeniyspivak.entity.Worker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -55,5 +54,11 @@ public class TaskDAOImpl implements TaskDAO {
                         JOIN workers ON task_worker.worker_id = workers.id
                         WHERE workers.id = ?""",
                 new BeanPropertyRowMapper<>(Task.class), workerId);
+    }
+
+    @Override
+    public void deleteTask(int id) {
+        jdbcTemplate.update("""
+                DELETE FROM tasks WHERE id = ?""", id);
     }
 }

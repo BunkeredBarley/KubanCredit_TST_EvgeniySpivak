@@ -1,5 +1,6 @@
 package com.bank.kubancredit_tst_evgeniyspivak.DAO;
 
+import com.bank.kubancredit_tst_evgeniyspivak.DTO.NewWorkerDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.DTO.WorkerFullDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.entity.Worker;
 
@@ -12,5 +13,9 @@ public interface WorkerDAO {
     Worker getWorker(int id);
 
     List<Worker> getWorkersOnTask(int taskId);
+
+    void addWorker(NewWorkerDTO newWorker);
+
+    void deleteWorker(int id);
 
 }

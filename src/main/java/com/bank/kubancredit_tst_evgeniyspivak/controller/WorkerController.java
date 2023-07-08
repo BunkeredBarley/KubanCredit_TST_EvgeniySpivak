@@ -1,5 +1,6 @@
 package com.bank.kubancredit_tst_evgeniyspivak.controller;
 
+import com.bank.kubancredit_tst_evgeniyspivak.DTO.NewWorkerDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.DTO.WorkerFullDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.service.WorkerService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,16 @@ public class WorkerController {
     @GetMapping("/{id}")
     public WorkerFullDTO getWorker(@PathVariable Integer id) {
         return workerService.getWorker(id);
+    }
+
+    @PostMapping
+    public void addWorker(@RequestBody NewWorkerDTO newWorker) {
+        workerService.addWorker(newWorker);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteWorker(@PathVariable Integer id) {
+        workerService.deleteWorker(id);
     }
 
 
