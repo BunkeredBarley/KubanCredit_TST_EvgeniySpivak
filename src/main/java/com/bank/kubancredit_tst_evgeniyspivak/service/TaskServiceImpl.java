@@ -2,6 +2,7 @@ package com.bank.kubancredit_tst_evgeniyspivak.service;
 
 import com.bank.kubancredit_tst_evgeniyspivak.DAO.TaskDAO;
 import com.bank.kubancredit_tst_evgeniyspivak.DAO.WorkerDAO;
+import com.bank.kubancredit_tst_evgeniyspivak.DTO.SetWorkerOnTaskDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.DTO.TaskFullDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.DTO.TaskModifyDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.DTO.TaskShortDTO;
@@ -40,5 +41,11 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void modifyTask(int id, TaskModifyDTO taskModify) {
         taskDAO.modifyTask(id, taskModify);
+    }
+
+    @Override
+    public void setWorkerOnTask(SetWorkerOnTaskDTO setWorkerOnTaskDTO) {
+        taskDAO.setWorkerOnTask(setWorkerOnTaskDTO.getTaskId(),
+                setWorkerOnTaskDTO.getWorkerId());
     }
 }

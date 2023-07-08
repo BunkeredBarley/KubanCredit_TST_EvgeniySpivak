@@ -2,12 +2,12 @@ package com.bank.kubancredit_tst_evgeniyspivak.DAO;
 
 import com.bank.kubancredit_tst_evgeniyspivak.DTO.TaskModifyDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.entity.Task;
+import com.bank.kubancredit_tst_evgeniyspivak.entity.Worker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
@@ -37,5 +37,23 @@ public class TaskDAOImpl implements TaskDAO {
                     status = ?
                 WHERE id = ?""", taskModify.getTitle(), taskModify.getDescription(),
                 taskModify.getGet_time(), taskModify.getStatus(), id);
+    }
+
+    @Override
+    public void setWorkerOnTask(int taskId, int workerId) {
+        jdbcTemplate.update("""
+                INSERT INTO task_worker (task_id, worker_id)
+                VALUES (?, ?)""", taskId, workerId);
+    }
+
+    @Override
+    public List<Task> getTasksOnWorker(int workerId) {
+        return jdbcTemplate.query("""
+                        SELECT DISTINCT tasks.id, title, description, get_time, status
+                        FROM tasks
+                        JOIN task_worker ON tasks.id = task_worker.task_id
+                        JOIN workers ON task_worker.worker_id = workers.id
+                        WHERE workers.id = ?""",
+                new BeanPropertyRowMapper<>(Task.class), workerId);
     }
 }

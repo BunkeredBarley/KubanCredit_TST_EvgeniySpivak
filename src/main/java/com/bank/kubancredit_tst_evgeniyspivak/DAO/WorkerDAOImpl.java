@@ -1,5 +1,6 @@
 package com.bank.kubancredit_tst_evgeniyspivak.DAO;
 
+import com.bank.kubancredit_tst_evgeniyspivak.entity.Task;
 import com.bank.kubancredit_tst_evgeniyspivak.entity.Worker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -16,7 +17,9 @@ public class WorkerDAOImpl implements WorkerDAO {
 
     @Override
     public Worker getWorker(int id) {
-        return null;
+        return jdbcTemplate.query("SELECT * FROM workers WHERE id=?",
+                        new BeanPropertyRowMapper<>(Worker.class), id)
+                .stream().findAny().orElse(null);
     }
 
     @Override

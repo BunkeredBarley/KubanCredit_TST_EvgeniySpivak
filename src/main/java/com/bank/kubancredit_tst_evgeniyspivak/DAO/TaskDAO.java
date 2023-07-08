@@ -13,4 +13,8 @@ public interface TaskDAO {
 
     void modifyTask(int id, TaskModifyDTO taskModify);
 
+    void setWorkerOnTask(int taskId, int workerId);
+
+    List<Task> getTasksOnWorker(int workerId);
+
 }
