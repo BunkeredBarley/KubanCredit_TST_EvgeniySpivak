@@ -1,12 +1,25 @@
 package com.bank.kubancredit_tst_evgeniyspivak.controller;
 
-import org.springframework.stereotype.Controller;
+import com.bank.kubancredit_tst_evgeniyspivak.DTO.TaskShortDTO;
+import com.bank.kubancredit_tst_evgeniyspivak.service.TaskService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequestMapping("/tasks")
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/tasks")
+@RequiredArgsConstructor
 public class TaskController {
 
+    private final TaskService taskService;
 
+
+    @GetMapping
+    public List<TaskShortDTO> getAllTasks() {
+        return taskService.getAllTasks();
+    }
 
 }
