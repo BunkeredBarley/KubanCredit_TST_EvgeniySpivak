@@ -3,6 +3,7 @@ package com.bank.kubancredit_tst_evgeniyspivak.service;
 import com.bank.kubancredit_tst_evgeniyspivak.DAO.TaskDAO;
 import com.bank.kubancredit_tst_evgeniyspivak.DTO.TaskShortDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.entity.Task;
+import com.bank.kubancredit_tst_evgeniyspivak.mapper.TaskToTaskShortDTOMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +19,8 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<TaskShortDTO> getAllTasks() {
         List<Task> tasks = taskDAO.getAllTasks();
-        List<TaskShortDTO> shortTasks = tasks.stream().
-                map(task -> new TaskShortDTO(task.getId(), task.getDescription(), task.getStatus())).
+        return tasks.stream().
+                map(TaskToTaskShortDTOMapper::taskToTaskShortDTO).
                 toList();
-        return shortTasks;
     }
 }
