@@ -12,6 +12,8 @@ import java.util.LinkedList;
 @RequiredArgsConstructor
 public class TaskQueueService {
 
+    private final int tasksPerOperationCount = 3;
+
     private final TaskDAO taskDAO;
 
     LinkedList<NewTaskRequestDTO> taskQueue = new LinkedList<>();
@@ -20,7 +22,7 @@ public class TaskQueueService {
     public void addTaskToQueue(NewTaskRequestDTO newTask) {
         taskQueue.add(newTask);
 
-        if (taskQueue.size() > 3) {
+        if (taskQueue.size() > tasksPerOperationCount) {
             flushTasksToDB();
         }
     }
@@ -31,7 +33,7 @@ public class TaskQueueService {
 
     @Transactional
     public void flushTasksToDB() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < tasksPerOperationCount; i++) {
             Thread thread = new Thread(() -> {
                 NewTaskRequestDTO newTask = pollFirstTaskFromQueue();
                 taskDAO.addNewTask(newTask);
