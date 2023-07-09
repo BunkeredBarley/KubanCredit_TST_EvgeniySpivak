@@ -7,6 +7,7 @@ import com.bank.kubancredit_tst_evgeniyspivak.DTO.TaskShortDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.DTO.WorkerFullDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.entity.Task;
 import com.bank.kubancredit_tst_evgeniyspivak.entity.Worker;
+import com.bank.kubancredit_tst_evgeniyspivak.errorHandler.NoSuchEntityException;
 import com.bank.kubancredit_tst_evgeniyspivak.mapper.WorkerToWorkerFullDTOMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,10 @@ public class WorkerServiceImpl implements WorkerService {
     public WorkerFullDTO getWorker(int id) {
         Worker worker = workerDAO.getWorker(id);
         List<Task> tasks = taskDAO.getTasksOnWorker(id);
+
+        if (worker == null) {
+            throw new NoSuchEntityException();
+        }
 
         return WorkerToWorkerFullDTOMapper.workerToWorkerFullDTO(worker, tasks);
     }

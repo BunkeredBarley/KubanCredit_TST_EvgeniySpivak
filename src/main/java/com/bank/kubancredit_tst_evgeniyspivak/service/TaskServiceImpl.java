@@ -5,6 +5,7 @@ import com.bank.kubancredit_tst_evgeniyspivak.DAO.WorkerDAO;
 import com.bank.kubancredit_tst_evgeniyspivak.DTO.*;
 import com.bank.kubancredit_tst_evgeniyspivak.entity.Task;
 import com.bank.kubancredit_tst_evgeniyspivak.entity.Worker;
+import com.bank.kubancredit_tst_evgeniyspivak.errorHandler.NoSuchEntityException;
 import com.bank.kubancredit_tst_evgeniyspivak.mapper.TaskToTaskFullDTOMapper;
 import com.bank.kubancredit_tst_evgeniyspivak.mapper.TaskToTaskShortDTOMapper;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +34,10 @@ public class TaskServiceImpl implements TaskService {
     public TaskFullDTO getTask(int id) {
         Task task = taskDAO.getTask(id);
         List<Worker> workers = workerDAO.getWorkersOnTask(id);
+
+        if (task == null) {
+            throw new NoSuchEntityException();
+        }
 
         return TaskToTaskFullDTOMapper.taskToTaskFullDTO(task, workers);
     }
