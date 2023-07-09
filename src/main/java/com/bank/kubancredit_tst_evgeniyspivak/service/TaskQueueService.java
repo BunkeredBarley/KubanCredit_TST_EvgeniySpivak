@@ -19,7 +19,7 @@ public class TaskQueueService {
     LinkedList<NewTaskRequestDTO> taskQueue = new LinkedList<>();
 
 
-    public void addTaskToQueue(NewTaskRequestDTO newTask) {
+    public synchronized void addTaskToQueue(NewTaskRequestDTO newTask) {
         taskQueue.add(newTask);
 
         if (taskQueue.size() > tasksPerOperationCount) {
@@ -27,7 +27,7 @@ public class TaskQueueService {
         }
     }
 
-    public NewTaskRequestDTO pollFirstTaskFromQueue() {
+    public synchronized NewTaskRequestDTO pollFirstTaskFromQueue() {
         return taskQueue.pollFirst();
     }
 

@@ -71,6 +71,7 @@ public class TaskDAOImpl implements TaskDAO {
     @Override
     public void deleteTask(int id) {
         jdbcTemplate.update("""
-                DELETE FROM tasks WHERE id = ?""", id);
+                DELETE FROM tasks WHERE id = ?;
+                DELETE FROM task_worker WHERE task_id = ?""", id, id);
     }
 }

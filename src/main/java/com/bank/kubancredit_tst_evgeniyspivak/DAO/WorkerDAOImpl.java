@@ -56,6 +56,7 @@ public class WorkerDAOImpl implements WorkerDAO {
     @Override
     public void deleteWorker(int id) {
         jdbcTemplate.update("""
-                DELETE FROM workers WHERE id = ?""", id);
+                DELETE FROM workers WHERE id = ?;
+                DELETE  FROM task_worker WHERE worker_id = ?""", id, id);
     }
 }
