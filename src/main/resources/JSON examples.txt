@@ -1,5 +1,5 @@
 
-Стандарты входящих JSON
+******JSON examples******
 
 ***Add new Task request***
 ***Modify Task Request***
@@ -10,13 +10,13 @@
     "status": "Done already like a Bat"
 }
 
-Пункт 6 - назначить на задачу исполнителя
+***Set task on worker***
 {
     "taskId": 3,
     "workerId": 3
 }
 
-Пункт 7 - добавить нового работника / обновить работника
+***Add new worker / update worker***
 {
     "name": "Sebastian Castellanos",
     "position": "Detective",
