@@ -1,9 +1,6 @@
 package com.bank.kubancredit_tst_evgeniyspivak.controller;
 
-import com.bank.kubancredit_tst_evgeniyspivak.DTO.SetWorkerOnTaskDTO;
-import com.bank.kubancredit_tst_evgeniyspivak.DTO.TaskFullDTO;
-import com.bank.kubancredit_tst_evgeniyspivak.DTO.TaskModifyDTO;
-import com.bank.kubancredit_tst_evgeniyspivak.DTO.TaskShortDTO;
+import com.bank.kubancredit_tst_evgeniyspivak.DTO.*;
 import com.bank.kubancredit_tst_evgeniyspivak.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +23,11 @@ public class TaskController {
     @GetMapping("/{id}")
     public TaskFullDTO getTask(@PathVariable Integer id) {
         return taskService.getTask(id);
+    }
+
+    @PostMapping
+    public void addNewTask(@RequestBody NewTaskRequestDTO newTask) {
+        taskService.addNewTask(newTask);
     }
 
     @PutMapping("/{id}")

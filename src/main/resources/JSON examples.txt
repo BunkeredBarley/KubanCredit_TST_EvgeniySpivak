@@ -1,7 +1,8 @@
 
 Стандарты входящих JSON
 
-Пункт 5 - изменить задачу по id (все кроме id и performer)
+***Add new Task request***
+***Modify Task Request***
 {
     "title": "Become the Bat",
     "description": "Bat Bat Bat",

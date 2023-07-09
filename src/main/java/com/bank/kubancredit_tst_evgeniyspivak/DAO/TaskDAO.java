@@ -1,5 +1,6 @@
 package com.bank.kubancredit_tst_evgeniyspivak.DAO;
 
+import com.bank.kubancredit_tst_evgeniyspivak.DTO.NewTaskRequestDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.DTO.TaskModifyDTO;
 import com.bank.kubancredit_tst_evgeniyspivak.entity.Task;
 
@@ -10,6 +11,8 @@ public interface TaskDAO {
     List<Task> getAllTasks();
 
     Task getTask(int id);
+
+    void addNewTask(NewTaskRequestDTO newTask);
 
     void modifyTask(int id, TaskModifyDTO taskModify);
 

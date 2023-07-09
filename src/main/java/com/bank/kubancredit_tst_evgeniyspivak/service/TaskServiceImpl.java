@@ -2,10 +2,7 @@ package com.bank.kubancredit_tst_evgeniyspivak.service;
 
 import com.bank.kubancredit_tst_evgeniyspivak.DAO.TaskDAO;
 import com.bank.kubancredit_tst_evgeniyspivak.DAO.WorkerDAO;
-import com.bank.kubancredit_tst_evgeniyspivak.DTO.SetWorkerOnTaskDTO;
-import com.bank.kubancredit_tst_evgeniyspivak.DTO.TaskFullDTO;
-import com.bank.kubancredit_tst_evgeniyspivak.DTO.TaskModifyDTO;
-import com.bank.kubancredit_tst_evgeniyspivak.DTO.TaskShortDTO;
+import com.bank.kubancredit_tst_evgeniyspivak.DTO.*;
 import com.bank.kubancredit_tst_evgeniyspivak.entity.Task;
 import com.bank.kubancredit_tst_evgeniyspivak.entity.Worker;
 import com.bank.kubancredit_tst_evgeniyspivak.mapper.TaskToTaskFullDTOMapper;
@@ -22,6 +19,8 @@ public class TaskServiceImpl implements TaskService {
     private final TaskDAO taskDAO;
     private final WorkerDAO workerDAO;
 
+    private final TaskQueueService taskQueueService;
+
     @Override
     public List<TaskShortDTO> getAllTasks() {
         List<Task> tasks = taskDAO.getAllTasks();
@@ -36,6 +35,11 @@ public class TaskServiceImpl implements TaskService {
         List<Worker> workers = workerDAO.getWorkersOnTask(id);
 
         return TaskToTaskFullDTOMapper.taskToTaskFullDTO(task, workers);
+    }
+
+    @Override
+    public void addNewTask(NewTaskRequestDTO newTask) {
+        taskQueueService.addTaskToQueue(newTask);
     }
 
     @Override
